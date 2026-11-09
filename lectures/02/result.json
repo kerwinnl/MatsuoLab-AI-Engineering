@@ -1,0 +1,110 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 8,
+    "warmup_steps": 10,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 160,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.14.1+cu130"
+  },
+  "method": "LoRA (no quantization), trained on glossary SFT data (Advanced homework)",
+  "per_kind": {
+    "before (base)": {
+      "direct content": 0.0,
+      "rephrase content": 0.0,
+      "alias content": 0.0,
+      "descriptive content": 0.0,
+      "ungrounded content": 0.0,
+      "ALL content": 0.0,
+      "format ALL": 1.0,
+      "ungrounded asserted": 6
+    },
+    "after (LoRA)": {
+      "direct content": 1.0,
+      "rephrase content": 1.0,
+      "alias content": 0.17,
+      "descriptive content": 0.0,
+      "ungrounded content": 0.38,
+      "ALL content": 0.67,
+      "format ALL": 1.0,
+      "ungrounded asserted": 5
+    },
+    "glossary search": {
+      "direct content": 1.0,
+      "rephrase content": 1.0,
+      "alias content": 1.0,
+      "descriptive content": 1.0,
+      "ungrounded content": 0.88,
+      "ALL content": 0.98,
+      "format ALL": 1.0,
+      "ungrounded asserted": 1
+    }
+  },
+  "train_size": 148,
+  "test_size": 42,
+  "before": {
+    "label": "before",
+    "n": 42,
+    "format_rate": 1.0,
+    "content_rate": 0.0,
+    "both_rate": 0.0,
+    "seconds": 172.1
+  },
+  "after": {
+    "label": "after",
+    "n": 42,
+    "format_rate": 1.0,
+    "content_rate": 0.6666666666666666,
+    "both_rate": 0.6666666666666666,
+    "seconds": 146.0
+  },
+  "regressed": [],
+  "executed_training_myself": true,
+  "knowledge": [
+    {
+      "Question": "What is the instructor's name?",
+      "In FAQ": false,
+      "Before-training classification": "asserted",
+      "Before-training output": "{\"answer\": \"Dr. Sarah Jenkins\", \"needs_review\": false}",
+      "After-training classification": "asserted",
+      "After-training output": "{\"answer\": \"Alexio Maurensi\", \"needs_review\": false}"
+    },
+    {
+      "Question": "What is the topic of the next lecture?",
+      "In FAQ": false,
+      "Before-training classification": "asserted",
+      "Before-training output": "{\"answer\": \"The next lecture will cover the latest advancements in AI ethics and governance.\", \"needs_review\": false}",
+      "After-training classification": "asserted",
+      "After-training output": "{\"answer\": \"Evaluation and improvement of evaluation methods and datasets. Discuss how to choose a problem, select a grading rubric, and interpret graders' answers. Also cover AI-generated content, such as writing and demonstrations, and how to detect them.\", \"needs_review\": false}"
+    },
+    {
+      "Question": "When is the final assignment deadline for this course?",
+      "In FAQ": false,
+      "Before-training classification": "asserted",
+      "Before-training output": "{\"answer\": \"The final assignment deadline is 10:00 PM on Friday, October 25, 2026.\", \"needs_review\": false}",
+      "After-training classification": "asserted",
+      "After-training output": "{\"answer\": \"31 December 2026. Late submissions will not be graded.\", \"needs_review\": false}"
+    },
+    {
+      "Question": "What is LoRA?",
+      "In FAQ": true,
+      "Before-training classification": "asserted",
+      "Before-training output": "{\"answer\": \"LoRA stands for Low-Rank Adaptation, a technique used in Generative AI to fine-tune large pre-trained language models (like BERT) with minimal computational cost and limited memory usage. It involves creating a small, trainable subset of weights from the original model and fine-tuning them on a specific dataset, allowing the model to learn new patterns while retaining the ability to generate new content.\", \"needs_review\": false}",
+      "After-training classification": "asserted",
+      "After-training output": "{\"answer\": \"A PEFT method that freezes pretrained weights, represents weight updates as a low-rank product of two small matrices, and trains only those small matrices. It trains few parameters and saves the results (adapters) in small files. The Lecture 02 exercises cover LoRA.\", \"needs_review\": false}"
+    }
+  ]
+}
